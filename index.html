@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chat de Grupo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://th.bing.com/th/id/R.c3897bd8e74ff3e54103104563c21b9c?rik=g8ANV3d0hZxUeQ&pid=ImgRaw&r=0'); /* Substitua 'seu-fundo.jpg' pelo caminho da sua imagem de fundo */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+        #chat-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            height: 300px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+        #message-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        #name-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        #send-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #send-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chat de Grupo</h1>
+        <p>Mensagem especial: Você pode fazer qualquer pergunta relacionada a mim ou a você.</p>
+        <input type="text" id="name-input" placeholder="Seu Nome">
+        <div id="chat-box"></div>
+        <input type="text" id="message-input" placeholder="Digite sua mensagem">
+        <button id="send-button">Enviar</button>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById("chat-box");
+        const messageInput = document.getElementById("message-input");
+        const nameInput = document.getElementById("name-input");
+        const sendButton = document.getElementById("send-button");
+
+        // Função para enviar mensagem
+        function sendMessage() {
+            const name = nameInput.value || "Usuário Anônimo";
+            const message = messageInput.value;
+            if (message.trim() !== "") {
+                chatBox.innerHTML += `<p>${name}: ${message}</p>`;
+                messageInput.value = "";
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                // Verificação para exibir mensagem especial para "Ingrid"
+                if (name.toLowerCase() === "ingrid") {
+                    chatBox.innerHTML += `<p>Sistema: Olá, Ingrid! Você é especial. 😊</p>`;
+                }
+            }
+        }
+
+        // Evento para enviar mensagem ao pressionar Enter
+        messageInput.addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+
+        // Evento para enviar mensagem ao clicar no botão "Enviar"
+        sendButton.addEventListener("click", sendMessage);
+    </script>
+</body>
+</html>
